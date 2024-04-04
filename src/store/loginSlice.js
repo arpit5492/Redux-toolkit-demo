@@ -1,19 +1,19 @@
-import { USERADD } from "./actions";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const initialState = {
     login: ["Admin", "User1", "User2", "Manager"],
     loginDet: ""
 }
 
-const loginReducer = (state = initState, action) => {
-    console.log(action);
-    if(action.type === USERADD) {
-        return {
-            ...state,
-            loginDet: action.payLoad
+const loginSlice = createSlice({
+    name: "login",
+    initialState,
+    reducers: {
+        userLogin: (state, action) => {
+            state.loginDet = action.payload
         }
     }
-    return state;
-}
+});
 
-export default loginReducer;
+export const {userLogin} = loginSlice.actions;
+export default loginSlice.reducer;
