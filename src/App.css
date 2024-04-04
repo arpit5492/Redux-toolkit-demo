@@ -1,0 +1,8 @@
+.card:hover {
+    border-color:brown;
+    border-width: 1.5px;
+}
+
+li{
+    cursor: pointer;
+}
