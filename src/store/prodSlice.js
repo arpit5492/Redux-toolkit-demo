@@ -1,6 +1,6 @@
-import * as actions from "./actions";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initState = {
+const initialState = {
     products: [
         {pName: "Apples", price: 1.45},
         {pName: "Bananas", price: 1.67},
@@ -12,24 +12,20 @@ const initState = {
     total: 0,
 }
 
-const prodReducer = (state = initState, action) => {
-    console.log(action);
-    if(action.type === actions.ADD) {
-        return {
-            ...state,
-            cart: [...state.cart, action.payLoad],
-            total: state.total + action.payLoad.price
+const prodSlice = createSlice({
+    name: "product",
+    initialState,
+    reducers: {
+        purchase: (state, action) => {
+            state.cart = [...state.cart, action.payload],
+            state.total = state.total + action.payload.price
+        },
+        deleteItem: (state, action) => {
+            state.cart = state.cart.filter((value, index) => index !== action.payload.index),
+            state.total = state.total - action.payload.price
         }
     }
+})
 
-    if(action.type === actions.REMOVE) {
-        return {
-            ...state,
-            cart: state.cart.filter((value, index) => index !== action.payLoad.index),
-            total: state.total - action.payLoad.price
-        }
-    }
-    return state;
-}
-
-export default prodReducer;
+export const {purchase, deleteItem} = prodSlice.actions;
+export default prodSlice.reducer;
