@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from "../store/loginSlice";
+import validateUser from "../store/actions";
 
 const Login = () => {
 
@@ -15,7 +15,8 @@ const Login = () => {
     const loginHandler = (e) => {
         const text = (e.target.options[e.target.selectedIndex].innerHTML);
         console.log(text);
-        dispatch(userLogin(text));
+        // dispatch(userLogin(text));
+        dispatch(validateUser(text));
     }
     return (
         <div className="col-sm-4 mr-3">
