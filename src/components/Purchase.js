@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { ADD } from "../store/actions";
+import { purchase } from "../store/prodSlice";
 
 const Purchase = () => {
     const prods = useSelector(store => store.pr.products);
@@ -13,7 +13,7 @@ const Purchase = () => {
         // console.log(typeof(price));
         const prodObj = {text, price};
         // console.log(prodObj);
-        dispatch({type: ADD, payLoad: prodObj});
+        dispatch(purchase(prodObj));
     }
 
     const prodItems = prods.map((prod, index) => {

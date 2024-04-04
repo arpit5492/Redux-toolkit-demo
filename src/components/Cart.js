@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { REMOVE } from "../store/actions";
+import { deleteItem } from "../store/prodSlice";
 
 const Cart = () => {
     const prods = useSelector(store => store.pr.cart);
@@ -10,7 +10,7 @@ const Cart = () => {
 
     const prodClick = (index, price) => {
         // console.log(index);
-        dispatch({type: REMOVE, payLoad: {index, price}});
+        dispatch(deleteItem({index, price}));
     }
     return (
         <div className="col-sm-4 mr-3">

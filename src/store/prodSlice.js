@@ -17,15 +17,17 @@ const prodSlice = createSlice({
     initialState,
     reducers: {
         purchase: (state, action) => {
-            state.cart = [...state.cart, action.payload],
-            state.total = state.total + action.payload.price
+            console.log(action);
+            state.cart = [...state.cart, action.payload];
+            state.total = state.total + action.payload.price;
         },
         deleteItem: (state, action) => {
-            state.cart = state.cart.filter((value, index) => index !== action.payload.index),
-            state.total = state.total - action.payload.price
+            console.log(action);
+            state.cart = state.cart.filter((value, index) => index !== action.payload.index);
+            state.total = state.total - action.payload.price;
         }
     }
-})
+});
 
 export const {purchase, deleteItem} = prodSlice.actions;
 export default prodSlice.reducer;
